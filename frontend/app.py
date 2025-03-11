@@ -1,9 +1,22 @@
 import streamlit as st
 import requests
+import urllib.parse
+
 
 st.title("🎬 AI Movie Recommender")
 
 query = st.text_input("Describe the kind of movie you want:")
+
+# Default image URL in case the poster is missing
+default_poster_url = "https://drive-in-theatre.netlify.app/movieImages/default-movie.png"
+
+# Function to check if the URL is accessible
+def is_image_accessible(url):
+    try:
+        response = requests.head(url, timeout=3)  # Using HEAD request for fast checks
+        return response.status_code == 200  # 200 means the image exists
+    except requests.RequestException:
+        return False  # If there's any exception, return False
 
 if st.button("Search"):
     if query:
@@ -12,9 +25,33 @@ if st.button("Search"):
             results = response.json()["movies"]
             st.subheader("🔍 Search Results:")
             for movie in results:
-                st.write(f"**🎬 {movie['title']}**")
-                st.write(f"📝 *{movie['overview']}*")
-                st.write(f"🎭 Genres: {movie['genres']}")
+                # Create two columns: one for the image and one for the text
+                col1, col2 = st.columns([1, 3])  # You can adjust the ratio of columns
+
+                # Display movie poster in the first column
+                with col1:
+                    if movie['poster_path']:
+                        poster_url = f"https://image.tmdb.org/t/p/w500{movie['poster_path']}"
+
+                        if is_image_accessible(poster_url):
+                            # search_url = f"https://www.google.com/search?q={urllib.parse.quote_plus(movie['title'])}"
+                            st.image(poster_url, width=150)
+                        else:
+                            st.image(default_poster_url, width=150)
+
+                    else:
+                        st.image(poster_url, width=150)  # Set the width of the poster
+
+                # Display movie details in the second column
+                with col2:
+                    movie_title = movie['title']
+                    search_url = f"https://www.google.com/search?q={urllib.parse.quote_plus(movie_title)}"
+
+                    st.markdown(f"**🎬 [ {movie_title} ]({search_url})**")
+                    # st.write(f"**🎬 {movie['title']}**")
+                    st.write(f"📝 *{movie['overview']}*")
+                    st.write(f"🎭 Genres: {movie['genres']}")
+                
                 st.write("---")
         else:
             st.error("Error fetching data!")

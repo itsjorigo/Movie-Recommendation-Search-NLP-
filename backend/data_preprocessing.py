@@ -33,7 +33,7 @@ def load_and_clean_data(movies_csv, keywords_csv):
 
     # Keep only relevant columns
     merged_df = merged_df[['id', 'title', 'overview', 'genres', 'keywords', 'runtime',
-                           'original_language', 'production_companies', 'popularity',
+                           'original_language', 'production_companies', 'popularity', 'poster_path',
                            'vote_average', 'vote_count']]
 
     # Drop rows where overview is missing
@@ -53,6 +53,6 @@ def save_cleaned_data(movies_csv, keywords_csv, output_file):
 if __name__ == "__main__":
     movies_file = r"data\movies_metadata.csv"
     keywords_file = r"data\keywords.csv"
-    output_file = "cleaned_movies_2.csv"
+    output_file = "backend\cleaned_movies_2.csv"
 
     save_cleaned_data(movies_file, keywords_file, output_file)

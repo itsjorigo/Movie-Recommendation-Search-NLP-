@@ -51,8 +51,8 @@ def save_cleaned_data(movies_csv, keywords_csv, output_file):
 
 # Run preprocessing
 if __name__ == "__main__":
-    movies_file = r"D:\Data Science & Machine Learning\Movie Recommendation Search (NLP)\data\movies_metadata.csv"
-    keywords_file = r"D:\Data Science & Machine Learning\Movie Recommendation Search (NLP)\data\keywords.csv"
-    output_file = "cleaned_movies.csv"
+    movies_file = r"data\movies_metadata.csv"
+    keywords_file = r"data\keywords.csv"
+    output_file = "cleaned_movies_2.csv"
 
     save_cleaned_data(movies_file, keywords_file, output_file)

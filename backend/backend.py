@@ -5,7 +5,7 @@ import faiss
 import pandas as pd
 
 # Load Data & Model
-file_path = os.path.abspath("backend/cleaned_movies.csv")
+file_path = os.path.abspath("backend/cleaned_movies_2.csv")
 print(f"Using file: {file_path}")
 
 df = pd.read_csv(file_path)
@@ -24,7 +24,7 @@ def search_movies(query: str):
     _, indices = index.search(query_embedding, 5)  # Top 5 results
 
     # Get movie titles
-    results = df.iloc[indices[0]][["title", "genres", "overview"]].to_dict(orient="records")
+    results = df.iloc[indices[0]][["title", "genres", "overview", "poster_path"]].to_dict(orient="records")
     return {"movies": results}
 
 # Run API

@@ -1,6 +1,10 @@
 import streamlit as st
 import requests
 import urllib.parse
+import os
+
+# Set the FastAPI URL depending on the environment
+FASTAPI_URL = os.getenv('FASTAPI_URL', "http://127.0.0.1:8000/search")  # Default to localhost
 
 
 st.title("🎬 AI Movie Recommender")

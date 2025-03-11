@@ -1,5 +1,7 @@
 import streamlit as st
 import requests
+import urllib.parse
+
 
 st.title("🎬 AI Movie Recommender")
 
@@ -32,7 +34,8 @@ if st.button("Search"):
                         poster_url = f"https://image.tmdb.org/t/p/w500{movie['poster_path']}"
 
                         if is_image_accessible(poster_url):
-                            st.image(poster_url, width=150)  # Display the poster
+                            # search_url = f"https://www.google.com/search?q={urllib.parse.quote_plus(movie['title'])}"
+                            st.image(poster_url, width=150)
                         else:
                             st.image(default_poster_url, width=150)
 
@@ -41,7 +44,11 @@ if st.button("Search"):
 
                 # Display movie details in the second column
                 with col2:
-                    st.write(f"**🎬 {movie['title']}**")
+                    movie_title = movie['title']
+                    search_url = f"https://www.google.com/search?q={urllib.parse.quote_plus(movie_title)}"
+
+                    st.markdown(f"**🎬 [ {movie_title} ]({search_url})**")
+                    # st.write(f"**🎬 {movie['title']}**")
                     st.write(f"📝 *{movie['overview']}*")
                     st.write(f"🎭 Genres: {movie['genres']}")
                 

@@ -18,4 +18,4 @@ jobs:
       - name: Push to hub
         env:
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
-        run: git push https://itsjorigo:$HF_TOKEN@huggingface.co/spaces/itsjorigo/movie-recommendation-search main
+        run: git push https://itsjorigo:$HF_TOKEN@huggingface.co/spaces/itsjorigo/movie-recommendation-search master

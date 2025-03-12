@@ -29,4 +29,5 @@ jobs:
           git config --global user.email "w1956366@my.westminster.ac.uk"
           git config --global user.name "itsjorigo"
           git lfs push origin master
-          git push https://itsjorigo:$HF_TOKEN@huggingface.co/spaces/itsjorigo/movie-recommendation-search master
+          git push https://huggingface.co/spaces/itsjorigo/movie-recommendation-search master
+          # git push https://itsjorigo:$HF_TOKEN@huggingface.co/spaces/itsjorigo/movie-recommendation-search master

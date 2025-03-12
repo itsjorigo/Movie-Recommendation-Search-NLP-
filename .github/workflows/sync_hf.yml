@@ -24,9 +24,9 @@ jobs:
         
       - name: Push to hub
         env:
-          HF_TOKEN: ${{ secrets.HF_TOKEN }}
+          HF_TOKEN_2: ${{ secrets.HF_TOKEN_2 }}
         run: |
           git config --global user.email "josephrodrigo42@gmail.com"
           git config --global user.name "itsjorigo"
           git lfs push origin master
-          git push https://itsjorigo:$HF_TOKEN@huggingface.co/spaces/itsjorigo/movie-recommendation-search master
+          git push https://itsjorigo:$HF_TOKEN_2@huggingface.co/spaces/itsjorigo/movie-recommendation-search master

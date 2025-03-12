@@ -25,7 +25,7 @@ jobs:
       - name: Push to hub
         env:
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
-        run: 
+        run: |
           git config --global user.email "w1956366@my.westminster.ac.uk"
           git config --global user.name "itsjorigo"
           git lfs push --all
